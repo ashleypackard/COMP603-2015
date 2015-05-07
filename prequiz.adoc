@@ -22,39 +22,66 @@ git push -u --all origin
 
 What is the difference between a set, a bag, and a sequence?
 
+	A set is a bunch of items relating to each other, a sequence is a bunch of items in order, and a bag is something that holds a bunch of items.
+
 
 What is a language (in terms of sets and sequences)?
+
+	A language is a way to communicate with reference to sets and sequences in order to convey a message.
 
 
 What is a compiler? Name some.
 
+	A compiler is a "device" that takes in a language and parses all the sets and sequences, etc. and converts it all to binary in order for the computer to understand.
+	Basically it takes a higher order language and converts it to a lower level language in a manner of steps according to a certain set of rules. There are java compilers...and stuff.
+
 
 What is an interpreter? How does that differ from a compiler?
+
+	An interpreter takes one language and converts it to another like people who speak english and translates it to spanish for someone else to understand.
+	It differs from a compiler because it just checks for syntax to make sure the compiler will have no issues doing the actual conversion! :D It makes sure you're following the rules.
 
 
 What is the derivative of a language?
 
+	A language derived from another language that has a lot of the same attributes and is based of the same principles and core.
+
 
 What is a regular expression?
+
+	A regular expression or regex, is a group or set of characters that you are looking for a match, like a search string that you want to match too. Such as /ash/ you would check to see if the words contained 'ash'.
 
 
 What is a finite automaton, and what is the difference between an NFA and a DFA?
 
+	That's a cool word. Otherwise I have no idea, it sounds like its limited (finite) and I don't know what an automaton is but I like saying it, I have never heard of a NFA or DFA unless I know what the expanded terms are....
 
 What is a grammar, and what is the difference between regular grammars, context-free grammars, LL(k) and LR(k)?
+
+	A grammar is a set of rules to follow for a language. A regular grammar is based on a core set of rules pertained to a specific region or culture I suppose. A context-free grammar does not have the same limitations since it's free of all references... The others I have no idea...
 
 
 What is the difference between derivative parsing, recursive-descent parsing, shift-reduce parsing and parser combinators?
 
+	I have absolutely no idea...I can tell you what a parser does....It takes sytanctically correct code (I'm pretty sure...) and cuts it into its main terms and sends it to be analyzed or to be converted to binary..I believe...
+
 
 What is a visitor?
+
+	It is a guest that was or was not expected...
 
 
 What is the difference between a parse tree and an abstract syntax tree?
 
+	I don't know that answer at this time..........
+
 
 Name some optimizations.
 
+	I don't know this asnwer either....
+
 
 What questions do you have for me?
+
+	Nope!
 
