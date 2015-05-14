@@ -1,0 +1,39 @@
+Lab 1 - Ashley Packard & Mike Kucharski
+
+Compiler Chosen: TCC (Tiny C Compiler)
+
+2.
+
+scan/lex/tokenize, parse, AST, optimization, code generation
+
+It looks like this file: tcccoff.c is the scanning part of the compiler as referred to by these comments:
+
+  // find a file symbol, copy it over
+    // then scan the whole symbol list and copy any function
+    // symbols that match the file association
+	
+	---------------------------------------
+
+	This looks like it parses: tcc.c  based on this snippet:
+	
+	int parse_args(TCCState *s, int argc, char **argv)
+211	{
+212	    int optind;
+…	
+348	                    argc1 = expand_args(&argv1, optarg);
+349	                    if (argc1 > 0) {
+350	                        parse_args(s, argc1, argv1);
+
+----------------------------------------------
+
+perhaps these files are code generators:
+
+arm-gen.c  &  c67-gen.c  &  i386-gen.c  & tccgen.c
+
+-----------------------------------------------------
+
+I can't really infer what any of the code is doing so I'm not entirely sure which files are in charge of optimizing and for the AST.
+
+3.
+
+The most ridiculous thing I found was a file named elf!
