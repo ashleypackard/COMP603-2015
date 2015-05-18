@@ -1,12 +1,7 @@
 What does it mean for two sets to be disjoint?
 
-
-
-
-
-----For two sets to be disjoint means that they have no common elements.
+----For two sets to be disjoint means that they have no common elements. The intersection of A and B will be the empty set.
 
 What is the union of two sets?
 
-
-----The union of two sets is the middle ground where the two sets share common elements.
+----The union of two sets is all the elements in both sets including the shared elements, the entire set of elements.
