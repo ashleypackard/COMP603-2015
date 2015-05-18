@@ -23,8 +23,8 @@ git push origin master
 
 === First and follow sets
 
-First set:: the set of terminals that can appear first in any derivation of a nonterminal.
-Follow set:: the set of terminals that can appear first *after* derivation of a nonterminal.
+First set:: the set of terminals that can appear first in any derivation of a nonterminal (excluding empty strings).
+Follow set:: the set of terminals that can appear first *after* derivation of a nonterminal (including empty strings).
 
 === LL(k) grammars
 
