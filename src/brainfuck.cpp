@@ -12,6 +12,7 @@ brainfuck.exe helloworld.bf
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <String.h>
 
 using namespace std;
 
@@ -116,25 +117,24 @@ void parse(fstream & file, Container * container) {
     char c;
 	Loop *loopContainer;
 
-	while(true) {
-		file >> c;
-		
-		if(file.eof()) {
-			break;
-		}
-		
-		if(c == ']') {
-			return;
-		}
-
-		if(c == '[') { 
-			loopContainer = new Loop();
-			parse(file, loopContainer);
-			container->children.push_back(loopContainer);
-		}
-		else {
-			container->children.push_back(new CommandNode(c));
-		}
+	while(file >> c) {
+		switch(c) {
+			case '[' :
+				loopContainer = new Loop();
+				parse(file, loopContainer);
+				container->children.push_back(loopContainer);
+				break;
+			case ']' : 
+				return;
+            case '+': 
+            case '-': 
+            case '<': 
+            case '>': 
+            case ',':
+            case '.': 
+				container->children.push_back(new CommandNode(c)); 
+				break;
+        }
 	}
 
 }
@@ -178,27 +178,39 @@ class Interpreter : public Visitor {
         void visit(const CommandNode * leaf) {
             switch (leaf->command) {
                 case INCREMENT:
+					memory[pointer]++;
                     break;
                 case DECREMENT:
+					memory[pointer]--;
                     break;
                 case SHIFT_LEFT:
+					pointer--;
                     break;
                 case SHIFT_RIGHT:
+					pointer++;
                     break;
                 case INPUT:
+					cin>>memory[pointer];
                     break;
                 case OUTPUT:
+					cout<<memory[pointer];
                     break;
             }
         }
         void visit(const Loop * loop) {
-            for (vector<Node*>::const_iterator it = loop->children.begin(); it != loop->children.end(); ++it) {
-                (*it)->accept(this);
-            }
+			while(memory[pointer]!=0) {
+				for (vector<Node*>::const_iterator it = loop->children.begin(); it != loop->children.end(); ++it) {
+					(*it)->accept(this);
+				}
+			}
         }
         void visit(const Program * program) {
             // zero init the memory array
+			memset(memory, 0, 30000); 
+
             // set pointer to zero
+			pointer = 0;
+
             for (vector<Node*>::const_iterator it = program->children.begin(); it != program->children.end(); ++it) {
                 (*it)->accept(this);
             }
