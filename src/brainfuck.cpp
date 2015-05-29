@@ -190,7 +190,7 @@ class Interpreter : public Visitor {
 					pointer++;
                     break;
                 case INPUT:
-					cin>>memory[pointer];
+					cin.get(memory[pointer]);
                     break;
                 case OUTPUT:
 					cout<<memory[pointer];
