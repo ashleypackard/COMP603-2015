@@ -171,6 +171,45 @@ class Printer : public Visitor {
         }
 };
 
+/**
+ * A compiler for Brainfuck abstract syntax trees.
+ * As a visitor, it will just print out the commands as is.
+ * For Loops and the root Program node, it walks through all the children.
+ */
+class JavaCompiler : public Visitor {
+    public:
+        void visit(const CommandNode * leaf) {
+            switch (leaf->command) {
+                case INCREMENT:   cout << "arr[arrayIndex]++;\n"; break;
+                case DECREMENT:   cout << "arr[arrayIndex]--;\n"; break;
+                case SHIFT_LEFT:  cout << "arrayIndex--;\n"; break;
+                case SHIFT_RIGHT: cout << "arrayIndex++;\n"; break;
+                case INPUT:       cout << "arr[arrayIndex] = reader.next().charAt(0);\n"; break;
+                case OUTPUT:      cout << "System.out.print(arr[arrayIndex]);\n"; break;
+            }
+        }
+        void visit(const Loop * loop) {
+            cout << "while(arr[arrayIndex]!=0) {\n";
+            for (vector<Node*>::const_iterator it = loop->children.begin(); it != loop->children.end(); ++it) {
+                (*it)->accept(this);
+            }
+			cout << "}\n";
+        }
+        void visit(const Program * program) {
+			cout << "import java.util.Scanner;\n";
+			cout << "public class Helloworld {\n";
+			cout << "public static void main(String[] args) {\n";
+			cout << "Scanner reader = new Scanner(System.in);\n";
+			cout << "char[] arr = new char[30000];\n";
+			cout << "int arrayIndex = 0;\n";
+            for (vector<Node*>::const_iterator it = program->children.begin(); it != program->children.end(); ++it) {
+                (*it)->accept(this);
+            }
+			cout << "}\n";
+			cout << "}\n";
+        }
+};
+
 class Interpreter : public Visitor {
     char memory[30000];
     int pointer;
@@ -222,6 +261,7 @@ int main(int argc, char *argv[]) {
     Program program;
     Printer printer;
     Interpreter interpreter;
+	JavaCompiler javacompiler;
     if (argc == 1) {
         cout << argv[0] << ": No input files." << endl;
     } else if (argc > 1) {
@@ -229,7 +269,8 @@ int main(int argc, char *argv[]) {
             file.open(argv[i], fstream::in);
             parse(file, & program);
 //            program.accept(&printer);
-            program.accept(&interpreter);
+            //program.accept(&interpreter);
+			program.accept(&javacompiler);
             file.close();
         }
     }
