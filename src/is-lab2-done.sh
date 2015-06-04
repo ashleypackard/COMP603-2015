@@ -1,7 +1,7 @@
 #!/bin/bash
 
-expected="$(cat quine.bf)"
-actual="$(./brainfuck.exe quine.bf)"
+expected="$(cat helloworld.bf)"
+actual="$(./brainfuck.exe helloworld.bf)"
 
 if [ "$expected" == "$actual" ]; then
     echo "Hooray, you're done, probably!"
